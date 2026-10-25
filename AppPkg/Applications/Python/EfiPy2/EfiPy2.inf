@@ -1,0 +1,51 @@
+## @file
+# EfiPy2.inf
+#
+#  Copyright (c) 2023, MaxWu EfiPy.Core@gmail.com. All rights reserved.<BR>
+#
+##
+
+[Defines]
+  INF_VERSION                 = 0x00010016
+  BASE_NAME                   = LibEfiPy2
+  FILE_GUID                   = 23001F60-6128-4DDE-93CF-7C0639253981
+  MODULE_TYPE                 = UEFI_DRIVER
+  VERSION_STRING              = 0.1
+  LIBRARY_CLASS               = LibEfiPy2|UEFI_APPLICATION UEFI_DRIVER DXE_RUNTIME_DRIVER
+
+  DEFINE PYTHON_VERSION       = 3.6.8
+
+#
+#  VALID_ARCHITECTURES        = X64
+#
+
+[Packages]
+  StdLib/StdLib.dec
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec 
+
+[LibraryClasses]
+  DxeServicesTableLib
+
+[FixedPcd]
+  gEfiMdePkgTokenSpaceGuid.PcdDebugPropertyMask|0x0F
+  gEfiMdePkgTokenSpaceGuid.PcdDebugPrintErrorLevel|0x80000040
+
+[Sources]
+
+# Modules/_EfiPy2
+  Modules/_EfiPy2/EfiPyMain.c
+
+[Sources.IA32]
+
+[Sources.X64]
+
+[BuildOptions]
+  MSFT:*_*_*_CC_FLAGS = /Oi- /wd4018 /wd4054 /wd4055 /wd4101 /wd4131 /wd4152 /wd4204 /wd4210 /wd4244 /wd4267 /wd4305 /wd4310 /wd4389 /wd4701 /wd4702 /wd4706 /wd4456 /wd4312 /wd4457 /wd4459 /wd4474 /wd4476 /I$(WORKSPACE)\AppPkg\Applications\Python\Python-3.6.8\PyMod-3.6.8\Include /I$(WORKSPACE)\AppPkg\Applications\Python\Python-3.6.8\Include /DHAVE_MEMMOVE /DUSE_PYEXPAT_CAPI /DXML_STATIC -D UEFI /DXML_POOR_ENTROPY
+  GCC:*_*_*_CC_FLAGS = -Wno-unused-function -Wno-format -Wno-error -fno-strict-aliasing -I$(WORKSPACE)/AppPkg/Applications/Python/Python-3.6.8/Include -DHAVE_MEMMOVE -DUSE_PYEXPAT_CAPI -DXML_STATIC -DXML_POOR_ENTROPY
+
+[BuildOptions.IA32]
+  MSFT:*_*_*_CC_FLAGS = /DUEFI_MSVC_32
+
+[BuildOptions.X64]
+  MSFT:*_*_*_CC_FLAGS = /DUEFI_MSVC_64 /D _WIN64 /D _M_X64

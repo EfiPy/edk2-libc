@@ -79,6 +79,11 @@
 
   CacheMaintenanceLib|MdePkg/Library/BaseCacheMaintenanceLib/BaseCacheMaintenanceLib.inf
 
+  DxeServicesTableLib|MdePkg/Library/DxeServicesTableLib/DxeServicesTableLib.inf
+  LibCorePy|AppPkg/Applications/Python/EfiPy2/corepy.inf
+  LibPythonCtypes|AppPkg/Applications/Python/EfiPy2/ctypes.inf
+  LibEfiPy2|AppPkg/Applications/Python/EfiPy2/EfiPy2.inf
+
 ###################################################################################################
 #
 # Components Section - list of the modules and components that will be processed by compilation

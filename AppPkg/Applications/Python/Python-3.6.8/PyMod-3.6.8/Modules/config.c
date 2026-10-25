@@ -90,7 +90,10 @@ extern PyObject* PyInit__ctypes(void);
 extern PyObject* init_sqlite3(void);
 
 // EfiPy
-extern PyObject* init_EfiPy(void);
+extern PyObject* PyInit__EfiPy2(void);
+
+// corepy
+extern PyObject *PyInit_extarray (void);
 
 // ssl
 extern PyObject* PyInit__ssl(void);
@@ -158,9 +161,12 @@ struct _inittab _PyImport_Inittab[] = {
     {"_string", PyInit__string},
     {"_stat", PyInit__stat},
     {"_opcode", PyInit__opcode},
+    {"extarray", PyInit_extarray},
 #if defined(UEFI_MSVC_32) || defined(UEFI_MSVC_64)
     { "_ctypes", PyInit__ctypes },
 #endif
+    {"_EfiPy2", PyInit__EfiPy2},
+
     /* Sentinel */
     {0, 0}
 };
