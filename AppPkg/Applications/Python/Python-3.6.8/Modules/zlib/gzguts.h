@@ -35,7 +35,7 @@
 #  include <stddef.h>
 #endif
 
-#if defined(__TURBOC__) || defined(_MSC_VER) || defined(_WIN32)
+#if (defined(__TURBOC__) || defined(_MSC_VER) || defined(_WIN32)) && !defined(UEFI_C_SOURCE)
 #  include <io.h>
 #endif
 
